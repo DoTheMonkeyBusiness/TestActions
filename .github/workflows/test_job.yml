@@ -1,0 +1,23 @@
+name: TEST_WORK
+
+on:
+  schedule:
+    - cron:  '*/2 * * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Work_test
+        run: |
+          cd runnable
+          java -Xms128m -Xmx4g -jar testRunnable.jar
